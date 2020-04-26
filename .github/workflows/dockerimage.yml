@@ -24,7 +24,7 @@ jobs:
         run: docker build . --file Dockerfile --tag novaticss/microservice-image-base:1
 
       - name: Docker login
-        run: docker login novaticss
+        run: docker login novaticss docker.io
 
       - name: Push Docker image to DockerHub
         run: docker push novaticss/microservice-image-base:1
