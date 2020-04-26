@@ -16,3 +16,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag novaticss/microservice-image-base:1
+      run: docker push novaticss/microservice-image-base:1
