@@ -1,4 +1,4 @@
-name: Docker
+name: Docker Image CI
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
         run: git fetch --depth=10000
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag novaticss/microservice-image-base:1
+        run: docker build . --file Dockerfile --tag andersonlfeitosa/microservice-image-base:1
 
       - name: Docker login
         env:
@@ -30,4 +30,4 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin docker.io
 
       - name: Push Docker image to DockerHub
-        run: docker push novaticss/microservice-image-base:1
+        run: docker push andersonlfeitosa/microservice-image-base:1
