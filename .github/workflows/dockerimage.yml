@@ -7,13 +7,21 @@ on:
     branches: [ master ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag novaticss/microservice-image-base:1
-      run: docker push novaticss/microservice-image-base:1
+
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Remove shallow
+        # run: git fetch --prune --unshallow
+        run: git fetch --depth=10000
+
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag novaticss/microservice-image-base:1
+
+      - name: Push Docker image to DockerHub
+        run: docker push novaticss/microservice-image-base:1
