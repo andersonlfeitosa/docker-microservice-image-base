@@ -21,10 +21,4 @@ jobs:
         run: git fetch --depth=10000
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag novaticss/microservice-image-base:1
-
-      - name: Docker login
-        run: docker login novaticss docker.io
-
-      - name: Push Docker image to DockerHub
-        run: docker push novaticss/microservice-image-base:1
+        run: docker build . --file Dockerfile --tag microservice-image-base:1 && docker login -u novaticss && docker push novaticss/microservice-image-base:1
